@@ -1,0 +1,15 @@
+.git
+.devcontainer
+.env
+.env.*
+!.env.example
+.hermes
+.venv
+venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.cache
+*.log
+**/*.pem
+**/*.key
