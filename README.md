@@ -49,7 +49,7 @@ The image extends the [official Hermes Agent image](https://hermes-agent.nousres
 and copies this repository into `/workspace`, the agent's terminal working directory.
 Hermes itself stays in `/opt/hermes`; configuration and sessions persist in
 `/opt/data`. The official entrypoint and process supervision are preserved.
-The base image is pinned to the `v0.22.5` release tag rather than `latest`.
+The base image is pinned to a release tag rather than `latest`.
 Release tags can be reassigned upstream; use an image digest if strict
 reproducibility is required. To upgrade, update `HERMES_IMAGE` in `Dockerfile`
 and run the smoke test below.
