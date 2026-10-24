@@ -146,7 +146,7 @@ Plain Docker's `hermes-data` volume is separate from Compose's project-prefixed
 volume. Configure it once with:
 
 ```sh
-docker run --rm -it -v hermes-data:/opt/data agent-sandbox-hermes:local setup
+docker run --rm -it -e API_SERVER_KEY -v hermes-data:/opt/data agent-sandbox-hermes:local setup
 ```
 
 ### Smoke test

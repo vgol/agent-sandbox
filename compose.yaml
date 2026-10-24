@@ -6,7 +6,7 @@ services:
     ports:
       - "${HERMES_BIND_ADDRESS:-127.0.0.1}:${HERMES_PORT:-8642}:8642"
     environment:
-      API_SERVER_KEY: ${API_SERVER_KEY:?Set API_SERVER_KEY to a random secret of at least 8 characters}
+      API_SERVER_KEY: ${API_SERVER_KEY:?Set API_SERVER_KEY to a random secret of at least 16 characters}
     volumes:
       - hermes-data:/opt/data
 
