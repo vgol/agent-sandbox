@@ -7,6 +7,7 @@ COPY --chown=hermes:hermes . .
 ENV API_SERVER_ENABLED=true \
     API_SERVER_HOST=0.0.0.0 \
     API_SERVER_PORT=8642 \
+    HERMES_WRITE_SAFE_ROOT=/opt/data:/workspace \
     TERMINAL_CWD=/workspace
 
 EXPOSE 8642

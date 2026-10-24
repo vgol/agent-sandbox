@@ -1,8 +1,8 @@
 .git
 .devcontainer
-.env
-.env.*
-!.env.example
+**/.env
+**/.env.*
+!**/.env.example
 .hermes
 .venv
 venv
