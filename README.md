@@ -15,9 +15,8 @@ session data should stay outside version control.
 ## Current scope
 
 The repository currently provides a development container and Terraform
-configuration for an OVHcloud VPS. The VPS configuration is preparation only:
-it does not represent an already provisioned agent deployment, and purchasing
-is blocked by default.
+configuration that adopts a manually ordered OVHcloud VPS by import. The
+configuration never orders servers, and no agent deployment exists yet.
 
 ## Getting started
 
@@ -37,10 +36,16 @@ a Debian Bookworm base with:
 - TypeScript
 - uv and uvx for Python tooling
 - Terraform CLI and the HashiCorp Terraform VS Code extension
+- OVHcloud CLI
+
+For an existing Codespace that reports Terraform missing, run
+**Codespaces: Rebuild Container** to pick up the configured feature, then
+check `terraform version` in a new terminal.
 
 The [devcontainer Dockerfile](.devcontainer/Dockerfile) installs uv and uvx
-from Astral's official image. Authenticate individual tools only when needed;
-do not commit authentication tokens.
+from Astral's official image and the OVHcloud CLI from OVHcloud's official
+image. Authenticate individual tools only when needed; do not commit
+authentication tokens.
 
 To build and enter the environment through the Dev Container CLI:
 
@@ -53,13 +58,11 @@ These commands require Docker and the Dev Container CLI on the host.
 
 ## OVHcloud infrastructure
 
-The [VPS setup guide](infra/ovh-vps/README.md) documents the selected VPS-1
-plan, Ubuntu installation, location preferences, pricing checks and credential
-setup. Europe is preferred, with Canada as a fallback when European stock is
-unavailable. Recheck availability and the account-specific checkout price
-before approving any purchase.
+The [VPS setup guide](infra/ovh-vps/README.md) explains how the manually
+ordered VPS-1 is imported into Terraform, how to find its service name and how
+to supply read-only API credentials.
 
-Validate the configuration from the repository root without ordering a VPS:
+Validate the configuration from the repository root:
 
 ```sh
 terraform -chdir=infra/ovh-vps init -backend=false
@@ -67,8 +70,9 @@ terraform -chdir=infra/ovh-vps fmt -check
 terraform -chdir=infra/ovh-vps validate
 ```
 
-Do not run an order-capable `terraform apply` until its cost and plan have
-been explicitly approved.
+Review the first `terraform plan`: it must show the import, optionally an
+in-place display-name update to `marusya-agent`, and no
+create, replace or destroy.
 
 ## Local files and secrets
 
