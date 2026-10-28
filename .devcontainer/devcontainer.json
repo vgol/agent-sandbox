@@ -5,6 +5,14 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"HashiCorp.terraform",
+				"hashicorp.terraform"
+			]
+		}
+	},
 
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
