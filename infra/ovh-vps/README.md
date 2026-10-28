@@ -37,7 +37,8 @@ datacenter must be checked in the authenticated dashboard or API.
 ## Credentials
 
 Never put API secrets or private keys in chat, Terraform source, variable
-files or Git. Use environment variables:
+files or Git. Use environment variables. Run these commands in Bash, not Zsh;
+do not enable shell tracing while handling secrets:
 
 ```sh
 export OVH_ENDPOINT=ovh-eu
@@ -100,10 +101,11 @@ and reconcile the configuration with the real server before applying. Then:
 terraform apply
 ```
 
-To target a different existing VPS, override `service_name` with `-var` or a
-local `*.tfvars` file; these files are ignored by Git. Review the plan carefully
-before switching targets. State contains server details, so keep it out of
-Git too.
+For the initial import only, override `service_name` with `-var` or a local
+`*.tfvars` file; these files are ignored by Git. After the import, changing
+`service_name` does not switch the VPS because the resource is already recorded
+in state. To manage another VPS, use a separate workspace and state. State
+contains server details, so keep it out of Git too.
 
 ## First login
 
